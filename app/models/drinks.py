@@ -7,22 +7,21 @@ from sqlalchemy.sql.expression import text
 
 from app.db.base_class import Base
 
-#USER MODEL - PARENT
-class User(Base):
-    __tablename__ = "businesses"
+#DRINK MODEL - PARENT
+class Drink(Base):
+    __tablename__ = "drinks"
 
     id = Column(Integer, primary_key=True, index=True)
+# foreign key connecter to business
+    business_id = Column(Integer, foreign_key=True, index=True)
     name = Column(String, index=True)
-    address = Column(String, unique=True, index=True, nullable=False)
-    city = Column(String, nullable=False)
-    state = Column(Boolean(), nullable=False)
-    postal_code = Column(Boolean(), nullable=False)
-# add to given user model...
-    latitude = Column(Float, nullable=False)
-    longitude = Column(Float, nullable=False)
+# where a drink image would be added ---> logo_pic = Column()
+    description = Column(String, nullable=True)
+    price = Column(Float, nullable=False)
+    featured = Column(Boolean(), nullable=False) #compare to is superuser?
+    ordered_list_number = Column(Integer, nullable=True)
     created_timestamp = Column(TIMESTAMP(timezone=True), nullable=False, server_default=text('now()'))
     updated_timestamp = Column(TIMESTAMP(timezone=True), nullable=True, server_default=text('now()'))
-# where a business pic would be added ---> logo_pic = Column()
 
 # relationships
     relationship()
