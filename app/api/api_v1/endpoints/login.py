@@ -43,13 +43,14 @@ def login_access_token(
         if existing_token.expires < datetime.datetime.utcnow():
             token = controllers.token.refresh(db, obj_in=existing_token)
 
-    if not existing_token: 
+    if not existing_token:
         access_token: str = security.create_access_token(user.id, expires_delta=access_token_expires)
         token = controllers.token.create(db, obj_in=access_token)
 
     return {
         "access_token": token.access_token,
-        "token_type": "bearer"
+        "token_type": "bearer",
+        "user_id": str(user.id)
     }
 
 
