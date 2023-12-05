@@ -1,7 +1,7 @@
-import sqlalchemy as sa
-from sqlalchemy import Boolean, Column, Integer, String, Float, ForeignKey
+#import sqlalchemy as sa
+from sqlalchemy import Column, Integer, String, Float, ForeignKey
 from sqlalchemy.orm import relationship, Mapped, mapped_column
-from sqlalchemy.sql.sqltypes import TIMESTAMP, DateTime
+from sqlalchemy.sql.sqltypes import DateTime
 from sqlalchemy.sql.expression import text
 from typing import List
 # from app.schemas import UserInDB
@@ -17,13 +17,13 @@ class Business(Base):
     name: Mapped[str] = Column(String, default="Name", nullable=False)
     address: Mapped[str] = Column(String, default="Address", nullable=False)
     city: Mapped[str] = Column(String, default="City", nullable=False)
-    state: Mapped[bool] = Column(Boolean(), default="State" nullable=False)
-    postal_code: Mapped[bool] = Column(Boolean(), default="Postal Code" nullable=False)
+    state: Mapped[str] = Column(String(), default="State", nullable=False)
+    postal_code: Mapped[str] = Column(String(), default="Postal Code", nullable=False)
 # add to given user model...
-    latitude: Mapped[float] = Column(Float, default="Latitude", nullable=False)
-    longitude: Mapped[float] = Column(Float, default="Longitude", nullable=False)
-    created_timestamp: Mapped[str] = Column(TIMESTAMP(timezone=True), nullable=False, server_default=text('now()'))
-    updated_timestamp: Mapped[str] = Column(TIMESTAMP(timezone=True), nullable=True, server_default=text('now()'))
+    latitude: Mapped[float] = Column(Float, nullable=False)
+    longitude: Mapped[float] = Column(Float, nullable=False)
+    created_timestamp: Mapped[str] = Column(DateTime(timezone=True), nullable=False, server_default=text('now()')) #change to DateTime?
+    updated_timestamp: Mapped[str] = Column(DateTime(timezone=True), nullable=True, server_default=text('now()')) #change to DateTime?
 # where a business pic would be added ---> logo_pic = Column()
 
 # relationships? do i need anything here or is that only in my child/pivots?

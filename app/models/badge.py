@@ -1,7 +1,7 @@
-import sqlalchemy as sa
+#import sqlalchemy as sa
 from sqlalchemy import Boolean, Column, Integer, String, Float, ForeignKey
 from sqlalchemy.orm import relationship, mapped_column, Mapped
-from sqlalchemy.sql.sqltypes import TIMESTAMP, DateTime
+from sqlalchemy.sql.sqltypes import DateTime
 from sqlalchemy.sql.expression import text
 # from app.schemas import UserInDB
 from typing import List
@@ -20,8 +20,8 @@ class Badge(Base):
     description: Mapped[str] = Column(String, default="Description", nullable=False)
     color_hex: Mapped[str] = Column(String, default="Color Hex Code", nullable=False)
     icon_url: Mapped[str] = Column(String, default="Icon URL", nullable=False)
-    created_timestamp: Mapped[str] = Column(TIMESTAMP(timezone=True), nullable=False, server_default=text('now()'))
-    updated_timestamp: Mapped[str] = Column(TIMESTAMP(timezone=True), nullable=True, server_default=text('now()'))
+    created_timestamp: Mapped[str] = Column(DateTime(timezone=True), nullable=False, server_default=text('now()'))
+    updated_timestamp: Mapped[str] = Column(DateTime(timezone=True), nullable=True, server_default=text('now()'))
 
 # relationship
     users: Mapped[List["UserBadge"]] = relationship(back_populates="badge")

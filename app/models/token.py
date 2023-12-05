@@ -4,6 +4,8 @@ import datetime
 
 from app.db.base_class import Base
 
+#? do i need to adjust this to ": Mapped[str]"
+
 class Token(Base):
     __tablename__ = "tokens"
 
@@ -15,5 +17,3 @@ class Token(Base):
     token_type = Column(String, default="auth")
     access_token = Column(String, default="")
     expires = Column(DateTime, default=get_future_date)
-
-    
