@@ -1,6 +1,6 @@
 import sqlalchemy as sa
 from sqlalchemy import Boolean, Column, Integer, String, Float, ForeignKey
-from sqlalchemy.orm import relationship, Mapped, mapped_column,
+from sqlalchemy.orm import relationship, Mapped, mapped_column
 from sqlalchemy.sql.sqltypes import TIMESTAMP, DateTime
 from sqlalchemy.sql.expression import text
 from typing import List
@@ -15,7 +15,7 @@ class Business(Base):
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
     name: Mapped[str] = Column(String, default="Name", nullable=False)
-    address: Mapped[str] = Column(String, default="Address", nullable=False) #what is unique again?
+    address: Mapped[str] = Column(String, default="Address", nullable=False)
     city: Mapped[str] = Column(String, default="City", nullable=False)
     state: Mapped[bool] = Column(Boolean(), default="State" nullable=False)
     postal_code: Mapped[bool] = Column(Boolean(), default="Postal Code" nullable=False)
@@ -38,22 +38,7 @@ class BusinessTag (Base):
     business_id: Mapped[int] = mapped_column(ForeignKey("business.id"))
     tag_id: Mapped[int] = mapped_column(ForeignKey("tag.id"))
 
-    business: Mapped["Business"] = relationship(back_populates="tags") #tags connects to relationship of parent tags
+# relationship
+    business: Mapped["Business"] = relationship(back_populates="tags")
     tag: Mapped["Tag"] = relationship(back_populates="businesses")
-    #tags has businesses relationship
-
-#! example:
-# class Parent(Base):
-#     __tablename__ = "parent_table"
-
-#     id: Mapped[int] = mapped_column(primary_key=True)
-#     child_id: Mapped[int] = mapped_column(ForeignKey("child_table.id"))
-#     child: Mapped["Child"] = relationship(back_populates="parents")
-
-
-# class Child(Base):
-#     __tablename__ = "child_table"
-
-#     id: Mapped[int] = mapped_column(primary_key=True)
-#     parents: Mapped[List["Parent"]] = relationship(back_populates="child")
-#     parents: Mapped[List["Parent"]] = relationship(back_populates="child")
+    #tag has businesses relationship
