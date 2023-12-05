@@ -20,5 +20,8 @@ class Tag(Base):
     created_timestamp = Column(TIMESTAMP(timezone=True), nullable=False, server_default=text('now()'))
     updated_timestamp = Column(TIMESTAMP(timezone=True), nullable=True, server_default=text('now()'))
 
-# relationships
-    relationship()
+# relationships - connect back to child businesstag under business.py
+    #businesses: Mapped[List["Business"]] = relationship(back_populates="businesstags")
+    businesses: Mapped[List["BusinessTag"]] = relationship(back_populates="tag")
+# BusinessTag has tags relationship -
+# Businesses has tag

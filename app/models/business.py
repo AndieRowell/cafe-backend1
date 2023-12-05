@@ -27,6 +27,9 @@ class Business(Base):
 # where a business pic would be added ---> logo_pic = Column()
 
 # relationships? do i need anything here or is that only in my child/pivots?
+    tags: Mapped[List["BusinessTag"]] = relationship(back_populates="business")
+    #BusinessTag refers to child class
+    #businesses refers to businesses relationship under child
 
 #! pivot/child
 class BusinessTag (Base):
@@ -35,10 +38,9 @@ class BusinessTag (Base):
     business_id: Mapped[int] = mapped_column(ForeignKey("business.id"))
     tag_id: Mapped[int] = mapped_column(ForeignKey("tag.id"))
 
-    business: Mapped[List["Business"]] = relationship(back_populates="business")
-    tag: Mapped[List["Tag"]] = relationship(back_populates="tag")
-
-#include pivot/child table under parent and then write it opposite in the connecting parent file
+    business: Mapped["Business"] = relationship(back_populates="tags") #tags connects to relationship of parent tags
+    tag: Mapped["Tag"] = relationship(back_populates="businesses")
+    #tags has businesses relationship
 
 #! example:
 # class Parent(Base):
