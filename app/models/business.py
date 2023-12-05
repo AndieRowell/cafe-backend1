@@ -5,7 +5,7 @@ from sqlalchemy.sql.sqltypes import DateTime
 from sqlalchemy.sql.expression import text
 from typing import List
 # from app.schemas import UserInDB
-from app.models.tag import Tag
+# from app.models.tag import Tag
 
 from app.db.base_class import Base
 
@@ -30,13 +30,15 @@ class Business(Base):
     tags: Mapped[List["BusinessTag"]] = relationship(back_populates="business")
     #BusinessTag refers to child class
     #businesses refers to businesses relationship under child
+    reviews: Mapped[List["Review"]] = relationship(back_populates="business")
+    drinks: Mapped[List["Drink"]] = relationship(back_populates="business")
 
 #! pivot/child
 class BusinessTag (Base):
     __tablename__ = "business_tags"
     id: Mapped[int] = mapped_column(primary_key=True, index=True)
-    business_id: Mapped[int] = mapped_column(ForeignKey("business.id"))
-    tag_id: Mapped[int] = mapped_column(ForeignKey("tag.id"))
+    business_id: Mapped[int] = mapped_column(ForeignKey("businesses.id"))
+    tag_id: Mapped[int] = mapped_column(ForeignKey("tags.id"))
 
 # relationship
     business: Mapped["Business"] = relationship(back_populates="tags")

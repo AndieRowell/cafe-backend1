@@ -6,7 +6,7 @@ from sqlalchemy.sql.expression import text
 # from app.schemas import UserInDB
 from typing import List
 
-from app.models.user import UserBadge
+# from app.models.user import UserBadge
 
 from app.db.base_class import Base
 
@@ -25,3 +25,4 @@ class Badge(Base):
 
 # relationship
     users: Mapped[List["UserBadge"]] = relationship(back_populates="badge")
+    collection_trackers: Mapped[List["CollectionTrackerBadge"]] = relationship(back_populates="badge")

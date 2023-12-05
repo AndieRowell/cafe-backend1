@@ -6,8 +6,6 @@ from sqlalchemy.sql.expression import text
 from app.schemas import UserInDB
 from typing import List
 
-from app.models.badge import Badge
-
 from app.db.base_class import Base
 
 #USER MODEL - PARENT
@@ -28,6 +26,8 @@ class User(Base):
 # relationship
     badges: Mapped[List["UserBadge"]] = relationship(back_populates="user")
     tags: Mapped[List["UserTag"]] = relationship(back_populates="user")
+    reviews: Mapped[List["Review"]] = relationship(back_populates="user")
+    collection_trackers: Mapped[List["Collection"]] = relationship(back_populates="user")
 
     def to_schema(self):
         return UserInDB(
@@ -36,7 +36,7 @@ class User(Base):
             email=self.email,
             hashed_password=self.hashed_password,
             is_active=self.is_active,
-            is_superuser=self.is_superuser
+            is_superuser=self.is_superuser,
 # add to given user schema
             created_timestamp=self.created_timestamp
         )
@@ -45,8 +45,8 @@ class User(Base):
 class UserBadge (Base):
     __tablename__ = "user_badges"
     id: Mapped[int] = mapped_column(primary_key=True, index=True)
-    user_id: Mapped[int] = mapped_column(ForeignKey("user.id"))
-    badge_id: Mapped[int] = mapped_column(ForeignKey("badge.id"))
+    user_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
+    badge_id: Mapped[int] = mapped_column(ForeignKey("badges.id"))
 
 # relationship
     user: Mapped["User"] = relationship(back_populates="badges")
@@ -56,9 +56,9 @@ class UserBadge (Base):
 class UserTag (Base):
     __tablename__ = "user_tags"
     id: Mapped[int] = mapped_column(primary_key=True, index=True)
-    user_id: Mapped[int] = mapped_column(ForeignKey("user.id"))
-    tag_id: Mapped[int] = mapped_column(ForeignKey("tag.id"))
+    user_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
+    tag_id: Mapped[int] = mapped_column(ForeignKey("tags.id"))
 
 # relationship
     user: Mapped["User"] = relationship(back_populates="tags")
-    tag: Mapped["Badge"] = relationship(back_populates="users")
+    tag: Mapped["Tag"] = relationship(back_populates="users")

@@ -6,9 +6,9 @@ from sqlalchemy.sql.expression import text
 # from app.schemas import UserInDB
 from typing import List
 
-from app.models.drink import Drink
-from app.models.badge import Badge
-from app.models.user import User
+# from app.models.drink import Drink
+# from app.models.badge import Badge
+# from app.models.user import User
 
 
 from app.db.base_class import Base
@@ -46,8 +46,8 @@ class Collection(Base):
 class CollectionTrackerDrink (Base):
     __tablename__ = "collection_tracker_drinks"
     id: Mapped[int] = mapped_column(primary_key=True, index=True)
-    collection_tracker_id: Mapped[int] = mapped_column(ForeignKey("collection_tracker.id"))
-    drink_id: Mapped[int] = mapped_column(ForeignKey("drink.id"))
+    collection_tracker_id: Mapped[int] = mapped_column(ForeignKey("collection_trackers.id"))
+    drink_id: Mapped[int] = mapped_column(ForeignKey("drinks.id"))
 
 # relationship
     collection_tracker: Mapped["Collection"] = relationship(back_populates="drinks")
@@ -58,8 +58,8 @@ class CollectionTrackerDrink (Base):
 class CollectionTrackerBadge (Base):
     __tablename__ = "collection_tracker_badges"
     id: Mapped[int] = mapped_column(primary_key=True, index=True)
-    collection_tracker_id: Mapped[int] = mapped_column(ForeignKey("collection_tracker.id"))
-    badge_id: Mapped[int] = mapped_column(ForeignKey("badge.id"))
+    collection_tracker_id: Mapped[int] = mapped_column(ForeignKey("collection_trackers.id"))
+    badge_id: Mapped[int] = mapped_column(ForeignKey("badges.id"))
 
 # relationship
     collection_tracker: Mapped["Collection"] = relationship(back_populates="badges")

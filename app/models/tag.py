@@ -1,13 +1,13 @@
 #import sqlalchemy as sa
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship, Mapped, mapped_column
 from sqlalchemy.sql.sqltypes import DateTime
 from sqlalchemy.sql.expression import text
 # from app.schemas import UserInDB
 from typing import List
 
-from app.models.business import BusinessTag
-from app.models.user import UserTag
+# from app.models.business import BusinessTag
+# from app.models.user import UserTag
 
 from app.db.base_class import Base
 

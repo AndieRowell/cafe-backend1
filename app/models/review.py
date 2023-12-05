@@ -5,9 +5,6 @@ from sqlalchemy.sql.sqltypes import DateTime
 from sqlalchemy.sql.expression import text
 # from app.schemas import UserInDB
 
-from app.models.user import User
-from app.models.user import Business
-
 from app.db.base_class import Base
 
 #REVIEW MODEL - PARENT
