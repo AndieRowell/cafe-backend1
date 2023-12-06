@@ -93,7 +93,7 @@ def create_user_open(
     db: Session = Depends(deps.get_db),
     password: str = Body(...),
     email: EmailStr = Body(...),
-    userame: str = Body(None),
+    username: str = Body(None),
 ) -> Any:
     """
     Create new user without the need to be logged in.

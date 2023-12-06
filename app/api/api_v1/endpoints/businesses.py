@@ -25,7 +25,7 @@ TODO:
 '''
 
 #!- get - read all businesses as anonymous user
-@router.get("/businesses/", response_model=List[schemas.Business])
+@router.get("/", response_model=List[schemas.Business])
 def read_businesses(
     db: Session = Depends(deps.get_db),
     skip: int = 0,
@@ -36,7 +36,7 @@ def read_businesses(
     return businesses
 
 #!- post - create new business (dev)
-@router.post("/businesses/", response_model=schemas.Business)
+@router.post("/", response_model=schemas.Business)
 def create_business(
     *,
     db: Session = Depends(deps.get_db),
@@ -49,4 +49,4 @@ def create_business(
             status_code=400,
             detail="The business with this name already exists in the system.",
         )
-    return controllers.create_business(db=db, business=business)
+    return new_business

@@ -41,5 +41,5 @@ class BusinessInDBBase(BusinessBase):
 
 # business that inherits from business in db base to include EVERYTHING
 #! BUSINESS
-class Business (BusinessInDBBase):
+class Business(BusinessInDBBase):
     pass
