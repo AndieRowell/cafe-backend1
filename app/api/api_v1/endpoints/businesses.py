@@ -43,7 +43,7 @@ def create_business(
     business_in: schemas.BusinessCreate,
 #    current_user: models.User = Depends(deps.get_current_active_superuser),
 ) -> Any:
-    new_business = controllers.user.get_by_id(db, id=business_in.id)
+    new_business = controllers.business.get_by_id(db, id=business_in.id)
     if new_business:
         raise HTTPException(
             status_code=400,
