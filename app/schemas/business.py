@@ -4,6 +4,8 @@ from typing import List, Optional
 #! from perspective of dev/admin - info needed to create/update/delete a business
 #! from perspective of a user - info given back to read a business
 # consider CRUD
+#? do i need class config anywhere?
+
 '''
 TODO:
 - base schema
@@ -33,3 +35,11 @@ class BusinessUpdate(BusinessBase):
 #!IN DB - dev
 class BusinessInDBBase(BusinessBase):
     id: Optional[int] = None
+
+    class Config:
+        from_attributes = True
+
+# business that inherits from business in db base to include EVERYTHING
+#! BUSINESS
+class Business (BusinessInDBBase):
+    pass
