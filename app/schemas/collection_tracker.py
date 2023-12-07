@@ -1,6 +1,10 @@
 from datetime import datetime
 from pydantic import BaseModel
 from typing import List, Optional
+from app.schemas.badge import Badge
+
+from app.schemas.drink import Drink
+from app.schemas.user import User
 
 #! from perspective of dev/admin - info needed to create/update/delete an event collection
 #! from perspective of an anonymous/authorized user - info given back to read an event collection
@@ -48,4 +52,7 @@ class CollectionInDBBase(CollectionBase):
 # business that inherits from business in db base to include EVERYTHING
 #! Collection
 class Collection(CollectionInDBBase):
-    pass
+    drinks: List["Drink"]
+    badges: List["Badge"]
+    user: List["User"]
+

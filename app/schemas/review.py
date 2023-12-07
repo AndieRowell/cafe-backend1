@@ -2,6 +2,10 @@ from datetime import datetime
 from pydantic import BaseModel
 from typing import List, Optional
 
+
+from app.schemas.user import User
+from app.schemas.business import Business
+
 #! from perspective of dev/admin - info needed to create/update/delete a review
 #! from perspective of authorized user - info needed to create/update/delete a review
 #! from perspective of a user/dev - info given back to read a business
@@ -41,4 +45,5 @@ class ReviewInDBBase(ReviewBase):
 # Review that inherits from Review in db base to include EVERYTHING
 #! Review
 class Review(ReviewInDBBase):
-    pass
+    user: List["User"]
+    business: List["Business"]

@@ -24,10 +24,10 @@ class User(Base):
     # where a profile pic would be added ---> profile_pic = Column()
 
 # relationship
-    badges = relationship(list("UserBadge"), back_populates="user")
-    tags = relationship(list("UserTag"),back_populates="user")
-    reviews = relationship(list("Review"), back_populates="user")
-    collection_trackers = relationship(list("Collection"), back_populates="user")
+    badges = relationship("UserBadge", back_populates="user")
+    tags = relationship("UserTag",back_populates="user")
+    reviews = relationship("Review", back_populates="user")
+    collection_trackers = relationship("Collection", back_populates="user")
 
     def to_schema(self):
         return UserInDB(

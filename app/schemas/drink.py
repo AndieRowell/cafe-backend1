@@ -1,6 +1,9 @@
 from datetime import datetime
 from pydantic import BaseModel
 from typing import List, Optional
+from app.schemas.business import Business
+
+from app.schemas.collection_tracker import Collection
 
 #! from perspective of dev/admin - info needed to create/update/delete a drink
 #! from perspective of a user - info given back to read a drink
@@ -44,4 +47,5 @@ class DrinkInDBBase(DrinkBase):
 # business that inherits from business in db base to include EVERYTHING
 #! DRINK
 class Drink(DrinkInDBBase):
-    pass
+    collection_trackers: List["Collection"]
+    business: List["Business"]

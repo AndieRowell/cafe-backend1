@@ -35,8 +35,8 @@ class Collection(Base):
     updated_timestamp: Mapped[DateTime] = Column(DateTime(timezone=True), nullable=True, server_default=text('now()'))
 
 #*PARENT relationship to child table CollectionTrackerDrink
-    drinks = relationship(list("CollectionTrackerDrink"), back_populates="collection_tracker")
-    badges = relationship(list("CollectionTrackerBadge"), back_populates="collection_tracker")
+   drinks = relationship("CollectionTrackerDrink", back_populates="collection_tracker")
+   badges = relationship("CollectionTrackerBadge", back_populates="collection_tracker")
 
 #*PARENT relationship to PARENT
     user = relationship("User", back_populates="collection_trackers")

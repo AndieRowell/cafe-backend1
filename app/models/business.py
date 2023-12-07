@@ -28,11 +28,11 @@ class Business(Base):
 # where a business pic would be added ---> logo_pic = Column()
 
 # relationships? do i need anything here or is that only in my child/pivots?
-    tags = relationship(list("BusinessTag"), back_populates="business")
+    tags = relationship("BusinessTag", back_populates="business")
     #BusinessTag refers to child class
     #businesses refers to businesses relationship under child
-    reviews = relationship(list("Review"), back_populates="business")
-    drinks = relationship(list("Drink"), back_populates="business")
+    reviews = relationship("Review", back_populates="business")
+    drinks = relationship("Drink", back_populates="business")
 
 #! pivot/child
 class BusinessTag (Base):

@@ -6,8 +6,8 @@ from sqlalchemy.sql.expression import text
 # from app.schemas import UserInDB
 from typing import List
 
-# from app.models.business import BusinessTag
-# from app.models.user import UserTag
+from app.models.business import Business
+from app.models.user import User
 
 from app.db.base_class import Base
 
@@ -26,6 +26,6 @@ class Tag(Base):
 
     # relationships - connect back to child businesstag under business.py
 
-    businesses = relationship(list("Business"), back_populates="tag")
+    businesses = relationship("Business", back_populates="tag")
     # Businesses has tag
-    users = relationship(list("User"), back_populates="tag")
+    users = relationship("User", back_populates="tag")

@@ -1,6 +1,10 @@
 from datetime import datetime
 from pydantic import BaseModel
 from typing import List, Optional
+from app.models.business import BusinessTag
+
+from app.schemas.drink import Drink
+from app.schemas.review import Review
 
 #! from perspective of dev/admin - info needed to create/update/delete a business
 #! from perspective of a user - info given back to read a business
@@ -43,4 +47,7 @@ class BusinessInDBBase(BusinessBase):
 # business that inherits from business in db base to include EVERYTHING
 #! BUSINESS
 class Business(BusinessInDBBase):
-    pass
+    drinks: List["Drink"]
+    reviews: List["Review"]
+    tags: List["BusinessTag"]
+

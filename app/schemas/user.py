@@ -1,7 +1,10 @@
 from typing import List, Optional
 from pydantic import BaseModel, EmailStr
+from app.schemas.badge import Badge
 
-from app.schemas.collection_tracker import CollectionSchema
+from app.schemas.collection_tracker import Collection
+from app.schemas.review import Review
+from app.schemas.tag import Tag
 
 #* schema notes
 # using pydantic models - help define structure of user data
@@ -50,10 +53,11 @@ class UserInDBBase(UserBase):
     #* pass - is a placeholder that does nothing
     # User class is inheriting from UserInDBBase but not adding any additional properties
 class User(UserInDBBase):
-    #tags: TagSchema
-    #badges: BadgeSchema
-    #reviews: ReviewSchema
-    collection: List["CollectionSchema"]
+    tags: List["Tag"]
+    badges: List["Badge"]
+    reviews: List["Review"]
+    collection: List["Collection"]
+    #! check this later
 
 
 # Additional properties stored in DB
