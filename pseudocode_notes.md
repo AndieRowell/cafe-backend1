@@ -129,13 +129,14 @@
             - [x] check in Business model (parent)
                 - (drinks - business) : many drinks to a business
 
-#### Collection_tracker Model
+#### Collection_tracker Model - NEED TO EDIT AND FILL OUT STILL
 - parent - Collection
     - relationships:
         - [x] (drinks - collection_tracker) : many drinks to a collection
             - [ ] check in Drink model
                 - () :
 
+- DID NOT CHECK THIS YET
         - [ ] (badges - collection_tracker) : many badges to a collection
             - [ ] check in Badge model (parent)
                 - () :
@@ -146,11 +147,11 @@
 
 - child - CollectionTrackerDrink
     - relationships:
-        - [ ] () :
-        - [ ] () :
+        - [ ] (collection - drinks) : a collection has many drinks
+        - [ ] (drink - collections) : a drink has many collections
 
 
-- child - CollectionTrackerBadge
+- child - CollectionTrackerBadge - DID NOT CHECK THIS YET...
     - relationships:
         - [ ] () :
         - [ ] () :

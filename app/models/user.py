@@ -51,6 +51,7 @@ class UserBadge (Base):
 # relationship
     user = relationship("User", back_populates="badges")
     badge = relationship("Badge", back_populates="users")
+    #? check if these are written correctly too
 
 #! pivot/child - user tag
 class UserTag (Base):
@@ -61,4 +62,4 @@ class UserTag (Base):
 
 # relationship
     user = relationship("User", back_populates="tags")
-    tag = relationship("UserTag", back_populates="users")
+    tag = relationship("Tag", back_populates="users")

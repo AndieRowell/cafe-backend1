@@ -32,7 +32,8 @@ class Drink(Base):
     collection_tracker = relationship("Collection")
 
 # relationships
-    #pivot relationship
+    #PARENT relationship TO CHILD - CollectionTrackerDrink
     collection_trackers = relationship(list("CollectionTrackerDrink"), back_populates="drink")
+
     #? foreignkey relationship to 1 business
     business = relationship("Business", back_populates="drinks")

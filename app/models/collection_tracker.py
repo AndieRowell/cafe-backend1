@@ -34,11 +34,11 @@ class Collection(Base):
     created_timestamp: Mapped[DateTime] = Column(DateTime(timezone=True), nullable=False, server_default=text('now()'))
     updated_timestamp: Mapped[DateTime] = Column(DateTime(timezone=True), nullable=True, server_default=text('now()'))
 
-    # pivot relationships
+#*PARENT relationship to child table CollectionTrackerDrink
     drinks = relationship(list("CollectionTrackerDrink"), back_populates="collection_tracker")
     badges = relationship(list("CollectionTrackerBadge"), back_populates="collection_tracker")
-    #? user id relationship
-    #user = relationship("User", back_populates="collection_trackers")
+
+#*PARENT relationship to PARENT
     user = relationship("User", back_populates="collection_trackers")
 
 
@@ -49,10 +49,10 @@ class CollectionTrackerDrink (Base):
     collection_tracker_id: Mapped[int] = mapped_column(ForeignKey("collection_trackers.id"))
     drink_id: Mapped[int] = mapped_column(ForeignKey("drinks.id"))
 
-# relationship
-    collection_tracker  = relationship("Collection" , back_populates="drinks")
+# relationships to parents
+    collection_tracker = relationship("Collection" , back_populates="drinks")
     drink = relationship("Drink", back_populates="collection_trackers")
-    #tag has businesses relationship
+
 
 #! pivot/child Collection drinks
 class CollectionTrackerBadge (Base):
@@ -61,7 +61,6 @@ class CollectionTrackerBadge (Base):
     collection_tracker_id: Mapped[int] = mapped_column(ForeignKey("collection_trackers.id"))
     badge_id: Mapped[int] = mapped_column(ForeignKey("badges.id"))
 
-# relationship
+# relationship to parents
     collection_tracker = relationship("Collection", back_populates="badges")
     badge = relationship("Badge", back_populates="collection_trackers")
-    #tag has businesses relationship
