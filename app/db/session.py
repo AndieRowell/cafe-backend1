@@ -7,9 +7,14 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-connection_string = f"{os.environ.get('DB_ENGINE')}://{os.environ.get('DB_USER')}:{os.environ.get('DB_PASSWORD')}@{os.environ.get('DB_HOST')}:{os.environ.get('DB_PORT')}/{os.environ.get('DB_NAME')}"
-if os.environ.get('DATABASE_URL'):
-    connection_string = os.environ.get('DATABASE_URL')
+user = os.getenv("DB_USER", "postgres")
+password = os.getenv("DB_PASSWORD", "postgres")
+server = os.getenv("DB_HOST", "localhost:5432")
+db = os.getenv("DB_NAME", "postgres")
+connection_string = f"postgresql://{user}:{password}@{server}/{db}"
+
+# if os.environ.get('DATABASE_URL'):
+#     connection_string = os.environ.get('DATABASE_URL')
 
 engine = create_engine(connection_string, pool_pre_ping=True)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)

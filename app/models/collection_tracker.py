@@ -27,19 +27,19 @@ class Collection(Base):
     contact_info: Mapped[str] = Column(String, default="Contact Info", nullable=True)
     website_url: Mapped[str] = Column(String, default="Website URL", nullable=True)
     instagram_handle: Mapped[str] = Column(String, default="Insta Handle", nullable=True)
-    event_promotion_time_start: Mapped[str] = Column(DateTime(timezone=True), default="Event Start Date", nullable=True, server_default=text('now()'))
-    event_promotion_time_stop: Mapped[str] = Column(DateTime(timezone=True), default="Event End Date", nullable=True, server_default=text('now()'))
+    event_promotion_time_start: Mapped[DateTime] = Column(DateTime(timezone=True), default="Event Start Date", nullable=True, server_default=text('now()'))
+    event_promotion_time_stop: Mapped[DateTime] = Column(DateTime(timezone=True), default="Event End Date", nullable=True, server_default=text('now()'))
     event_promotion_banner: Mapped[str] = Column(String, nullable=True)
     favorite: Mapped[bool] = Column(Boolean(), nullable=False) #compare to is superuser?
-    created_timestamp: Mapped[str] = Column(DateTime(timezone=True), nullable=False, server_default=text('now()'))
-    updated_timestamp: Mapped[str] = Column(DateTime(timezone=True), nullable=True, server_default=text('now()'))
+    created_timestamp: Mapped[DateTime] = Column(DateTime(timezone=True), nullable=False, server_default=text('now()'))
+    updated_timestamp: Mapped[DateTime] = Column(DateTime(timezone=True), nullable=True, server_default=text('now()'))
 
-# pivot relationships
-    drinks: Mapped[List["CollectionTrackerDrink"]] = relationship(back_populates="collection_tracker")
-    badges: Mapped[List["CollectionTrackerBadge"]] = relationship(back_populates="collection_tracker")
-#? user id relationship
+    # pivot relationships
+    drinks = relationship(list("CollectionTrackerDrink"), back_populates="collection_tracker")
+    badges = relationship(list("CollectionTrackerBadge"), back_populates="collection_tracker")
+    #? user id relationship
     #user = relationship("User", back_populates="collection_trackers")
-    user: Mapped["User"] = relationship("User", back_populates="collection_trackers")
+    user = relationship("User", back_populates="collection_trackers")
 
 
 #! pivot/child Collection drinks
@@ -50,8 +50,8 @@ class CollectionTrackerDrink (Base):
     drink_id: Mapped[int] = mapped_column(ForeignKey("drinks.id"))
 
 # relationship
-    collection_tracker: Mapped["Collection"] = relationship(back_populates="drinks")
-    drink: Mapped["Drink"] = relationship(back_populates="collection_trackers")
+    collection_tracker  = relationship("Collection" , back_populates="drinks")
+    drink = relationship("Drink", back_populates="collection_trackers")
     #tag has businesses relationship
 
 #! pivot/child Collection drinks
@@ -62,6 +62,6 @@ class CollectionTrackerBadge (Base):
     badge_id: Mapped[int] = mapped_column(ForeignKey("badges.id"))
 
 # relationship
-    collection_tracker: Mapped["Collection"] = relationship(back_populates="badges")
-    badge: Mapped["Badge"] = relationship(back_populates="collection_trackers")
+    collection_tracker = relationship("Collection", back_populates="badges")
+    badge = relationship("Badge", back_populates="collection_trackers")
     #tag has businesses relationship

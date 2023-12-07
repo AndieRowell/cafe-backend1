@@ -1,3 +1,4 @@
+from datetime import datetime
 from pydantic import BaseModel
 from typing import List, Optional
 
@@ -22,8 +23,8 @@ class DrinkBase(BaseModel):
     price: float
     featured: bool
     ordered_list_number: int
-    created_timestamp: Optional[str] = None
-    updated_timestamp: Optional[str] = None
+    created_timestamp: Optional[datetime] = None
+    updated_timestamp: Optional[datetime] = None
 
 #!CREATE - dev
 class DrinkCreate(DrinkBase):

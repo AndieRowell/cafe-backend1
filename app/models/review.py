@@ -20,9 +20,9 @@ class Review(Base):
 
     body: Mapped[str] = Column(String, default="Body Text", nullable=True)
     star_rating: Mapped[int] = Column(Integer, nullable=True)
-    created_timestamp: Mapped[str] = Column(DateTime(timezone=True), nullable=False, server_default=text('now()'))
-    updated_timestamp: Mapped[str] = Column(DateTime(timezone=True), nullable=True, server_default=text('now()'))
+    created_timestamp: Mapped[DateTime] = Column(DateTime(timezone=True), nullable=False, server_default=text('now()'))
+    updated_timestamp: Mapped[DateTime] = Column(DateTime(timezone=True), nullable=True, server_default=text('now()'))
 
 #? foreign key relationships
-    user: Mapped["User"] = relationship("User", back_populates="reviews")
-    business: Mapped["Business"] = relationship("Business", back_populates="reviews")
+    user = relationship("User", back_populates="reviews")
+    business = relationship("Business", back_populates="reviews")

@@ -25,11 +25,11 @@ class Drink(Base):
     price: Mapped[float] = Column(Float, default="Price", nullable=False)
     featured: Mapped[bool] = Column(Boolean(), default="Featured", nullable=False) #compare to is superuser?
     ordered_list_number: Mapped[str] = Column(Integer, nullable=True)
-    created_timestamp: Mapped[str] = Column(DateTime(timezone=True), nullable=False, server_default=text('now()'))
-    updated_timestamp: Mapped[str] = Column(DateTime(timezone=True), nullable=True, server_default=text('now()'))
+    created_timestamp: Mapped[DateTime] = Column(DateTime(timezone=True), nullable=False, server_default=text('now()'))
+    updated_timestamp: Mapped[DateTime] = Column(DateTime(timezone=True), nullable=True, server_default=text('now()'))
 
 # relationships
     #pivot relationship
-    collection_trackers: Mapped[List["CollectionTrackerDrink"]] = relationship(back_populates="drink")
+    collection_trackers  = relationship(list("CollectionTrackerDrink"), back_populates="drink")
     #? foreignkey relationship to 1 business
-    business: Mapped["Business"] = relationship("Business", back_populates="drinks")
+    business = relationship("Business", back_populates="drinks")

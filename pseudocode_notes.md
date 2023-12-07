@@ -20,3 +20,12 @@ TODO:
 - add to schema init file
 - add router to api file
 '''
+
+# Thursday 12/7
+# TODO:
+- [x] change in all models from str to DateTime
+- [ ] run alembic to update models in db
+- [ ] create schemas for the rest of models
+- [ ] update alembic
+- [ ] adjust relationships
+- [ ] create rest of crud in controllers

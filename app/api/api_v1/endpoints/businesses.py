@@ -47,10 +47,11 @@ def create_business(
     business_in: schemas.BusinessInDBBase,
 #    current_user: models.User = Depends(deps.get_current_active_superuser),
 ) -> Any:
-    new_business = controllers.business.create(db, obj_in=business_in)
-    if new_business:
+    business_exists = controllers.business.get_business_by_name(db, name=business_in.name)
+    if business_exists:
         raise HTTPException(
             status_code=400,
             detail="The business with this name already exists in the system.",
         )
+    new_business = controllers.business.create(db, obj_in=business_in)
     return new_business

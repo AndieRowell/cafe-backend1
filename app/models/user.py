@@ -20,14 +20,14 @@ class User(Base):
     is_active: Mapped[bool] = Column(Boolean(), default=True)
     is_superuser: Mapped[bool] = Column(Boolean(), default=False)
     # add to given user model...
-    created_timestamp: Mapped[str] = Column(DateTime(timezone=True), nullable=False, server_default=text('now()'))
+    created_timestamp: Mapped[DateTime] = Column(DateTime(timezone=True), nullable=False, server_default=text('now()'))
     # where a profile pic would be added ---> profile_pic = Column()
 
 # relationship
-    badges: Mapped[List["UserBadge"]] = relationship(back_populates="user")
-    tags: Mapped[List["UserTag"]] = relationship(back_populates="user")
-    reviews: Mapped[List["Review"]] = relationship(back_populates="user")
-    collection_trackers: Mapped[List["Collection"]] = relationship(back_populates="user")
+    badges = relationship(list("UserBadge"), back_populates="user")
+    tags = relationship(list("UserTag"),back_populates="user")
+    reviews = relationship(list("Review"), back_populates="user")
+    collection_trackers = relationship(list("Collection"), back_populates="user")
 
     def to_schema(self):
         return UserInDB(
@@ -49,8 +49,8 @@ class UserBadge (Base):
     badge_id: Mapped[int] = mapped_column(ForeignKey("badges.id"))
 
 # relationship
-    user: Mapped["User"] = relationship(back_populates="badges")
-    badge: Mapped["Badge"] = relationship(back_populates="users")
+    user = relationship("User", back_populates="badges")
+    badge = relationship("Badge", back_populates="users")
 
 #! pivot/child - user tag
 class UserTag (Base):
@@ -60,5 +60,5 @@ class UserTag (Base):
     tag_id: Mapped[int] = mapped_column(ForeignKey("tags.id"))
 
 # relationship
-    user: Mapped["User"] = relationship(back_populates="tags")
-    tag: Mapped["Tag"] = relationship(back_populates="users")
+    user = relationship("User", back_populates="tags")
+    tag = relationship("UserTag", back_populates="users")

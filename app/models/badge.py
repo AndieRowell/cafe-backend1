@@ -20,9 +20,9 @@ class Badge(Base):
     description: Mapped[str] = Column(String, default="Description", nullable=False)
     color_hex: Mapped[str] = Column(String, default="Color Hex Code", nullable=False)
     icon_url: Mapped[str] = Column(String, default="Icon URL", nullable=False)
-    created_timestamp: Mapped[str] = Column(DateTime(timezone=True), nullable=False, server_default=text('now()'))
-    updated_timestamp: Mapped[str] = Column(DateTime(timezone=True), nullable=True, server_default=text('now()'))
+    created_timestamp: Mapped[DateTime] = Column(DateTime(timezone=True), nullable=False, server_default=text('now()'))
+    updated_timestamp: Mapped[DateTime] = Column(DateTime(timezone=True), nullable=True, server_default=text('now()'))
 
 # relationship
-    users: Mapped[List["UserBadge"]] = relationship(back_populates="badge")
-    collection_trackers: Mapped[List["CollectionTrackerBadge"]] = relationship(back_populates="badge")
+    users = relationship("UserBadge", back_populates="badge")
+    collection_trackers = relationship(list("CollectionTrackerBadge"), back_populates="badges")

@@ -1,3 +1,4 @@
+from datetime import datetime
 from pydantic import BaseModel
 from typing import List, Optional
 
@@ -23,11 +24,11 @@ class CollectionBase(BaseModel):
     contact_info: Optional[str] = None
     website_url: Optional[str] = None
     instagram_handle: Optional[str] = None
-    event_promotion_time_start: Optional[str] = None
-    event_promotion_time_stop: Optional[str] = None
+    event_promotion_time_start: Optional[datetime] = None
+    event_promotion_time_stop: Optional[datetime] = None
     favorite: Optional[bool] = None
-    created_timestamp: Optional[str] = None
-    updated_timestamp: Optional[str] = None
+    created_timestamp: Optional[datetime] = None
+    updated_timestamp: Optional[datetime] = None
 
 #!CREATE - dev
 class CollectionCreate(CollectionBase):

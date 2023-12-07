@@ -1,3 +1,4 @@
+from datetime import datetime
 from pydantic import BaseModel
 from typing import List, Optional
 
@@ -21,8 +22,8 @@ class BusinessBase(BaseModel):
     postal_code: str
     latitude: float
     longitude: float
-    created_timestamp: str
-    updated_timestamp: str
+    created_timestamp: datetime
+    updated_timestamp: datetime
 
 #!CREATE - dev
 class BusinessCreate(BusinessBase):
