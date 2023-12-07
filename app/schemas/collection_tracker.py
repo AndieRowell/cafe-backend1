@@ -18,7 +18,7 @@ TODO:
 '''
 
 class CollectionBase(BaseModel):
-    user_id: int #connect to user?
+    user_id: int #? foreign keyconnect to user?
     title: str
     ordered_list_number: int
     contact_info: Optional[str] = None

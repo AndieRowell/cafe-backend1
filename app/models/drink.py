@@ -28,8 +28,11 @@ class Drink(Base):
     created_timestamp: Mapped[DateTime] = Column(DateTime(timezone=True), nullable=False, server_default=text('now()'))
     updated_timestamp: Mapped[DateTime] = Column(DateTime(timezone=True), nullable=True, server_default=text('now()'))
 
+#* potential relationships to fix with PARENT add when comparing drink and collection models
+    collection_tracker = relationship("Collection")
+
 # relationships
     #pivot relationship
-    collection_trackers  = relationship(list("CollectionTrackerDrink"), back_populates="drink")
+    collection_trackers = relationship(list("CollectionTrackerDrink"), back_populates="drink")
     #? foreignkey relationship to 1 business
     business = relationship("Business", back_populates="drinks")

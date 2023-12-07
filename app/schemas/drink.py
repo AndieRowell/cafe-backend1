@@ -17,7 +17,7 @@ TODO:
 '''
 
 class DrinkBase(BaseModel):
-    business_id: int #connect to business?
+    business_id: int #?connect to business?
     name: str
     description: str
     price: float
