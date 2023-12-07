@@ -31,8 +31,9 @@ TODO:
     - [x] collection_tracker
     - [x] drink
     - [x] msg
-    - [ ] review
+    - [x] review
         - in the review schema there are foreign keys?
+            - do these need to be written in differently?
     - [ ] tag
     - [x] token
     - [x] user
