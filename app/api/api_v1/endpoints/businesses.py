@@ -8,6 +8,10 @@ from sqlalchemy.orm import Session
 # from database import SessionLocal, engine
 
 from app import models, schemas, controllers
+#? from app.controllers import BusinessController
+#? tried to import business from the controller??????
+from app.controllers.BusinessController import business
+
 from app.api import deps
 from app.core.config import settings
 
@@ -40,10 +44,10 @@ def read_businesses(
 def create_business(
     *,
     db: Session = Depends(deps.get_db),
-    business_in: schemas.BusinessCreate,
+    business_in: schemas.BusinessInDBBase,
 #    current_user: models.User = Depends(deps.get_current_active_superuser),
 ) -> Any:
-    new_business = controllers.business.get_by_id(db, id=business_in.id)
+    new_business = controllers.business.create(db, obj_in=business_in)
     if new_business:
         raise HTTPException(
             status_code=400,
