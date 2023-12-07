@@ -26,12 +26,13 @@ TODO:
 - [x] change in all models from str to DateTime
 - [ ] run alembic to update models in db
 - [ ] create schemas for the rest of models
-    - [ ] badge
+    - [x] badge
     - [x] business
     - [x] collection_tracker
     - [x] drink
     - [x] msg
     - [ ] review
+        - in the review schema there are foreign keys?
     - [ ] tag
     - [x] token
     - [x] user
