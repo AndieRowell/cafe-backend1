@@ -17,7 +17,7 @@ class CollectionController(BaseController[CollectionModel, CollectionCreate, Col
         return db.query(CollectionModel).filter(CollectionModel.title == title).first()
 
 #! create collection
-    def create_drink(self, db: Session, *, obj_in: CollectionBase) -> CollectionModel:
+    def create_collection(self, db: Session, *, obj_in: CollectionBase) -> CollectionModel:
         db_obj = CollectionModel(
             user_id=obj_in.user_id,
             title=obj_in.title,
@@ -37,4 +37,4 @@ class CollectionController(BaseController[CollectionModel, CollectionCreate, Col
         db.refresh(db_obj)
         return db_obj
 
-drink = CollectionController(CollectionModel)
+collection = CollectionController(CollectionModel)
