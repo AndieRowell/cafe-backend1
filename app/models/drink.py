@@ -3,11 +3,8 @@ from sqlalchemy import Boolean, Column, Integer, String, Float, ForeignKey
 from sqlalchemy.orm import relationship, mapped_column, Mapped
 from sqlalchemy.sql.sqltypes import DateTime
 from sqlalchemy.sql.expression import text
-# from app.schemas import UserInDB
+#from app.schemas import UserInDB
 from typing import List
-
-# from app.models.collection_tracker import CollectionTrackerDrink
-# from app.models.business import Business
 
 from app.db.base_class import Base
 
@@ -29,6 +26,8 @@ class Drink(Base):
     updated_timestamp: Mapped[DateTime] = Column(DateTime(timezone=True), nullable=True, server_default=text('now()'))
 
 #* potential relationships to fix with PARENT add when comparing drink and collection models
+    from app.models.collection_tracker import CollectionTrackerDrink
+    from app.models.business import Business
     # collection_tracker = relationship("Collection")
 
 # relationships

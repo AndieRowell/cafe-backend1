@@ -1,9 +1,6 @@
 from datetime import datetime
 from typing import Optional, List
 from pydantic import BaseModel
-from app.schemas.collection_tracker import Collection
-
-from app.schemas.user import User
 
 #! from perspective of dev/admin - info needed to create/update/delete a badge
 #! from perspective of a user - info given back to read a badge
@@ -41,5 +38,7 @@ class BadgeInDBBase(BadgeBase):
 # badge that inherits from badge in db base to include EVERYTHING
 #! Badge
 class Badge(BadgeInDBBase):
+    from app.schemas.collection_tracker import Collection
+    #from app.schemas.user import User
     users: List["User"]
     collection_trackers: List["Collection"]

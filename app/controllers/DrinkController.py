@@ -2,7 +2,7 @@ from typing import Any, Dict, Optional, Union
 from sqlalchemy.orm import Session
 from app.controllers.BaseController import BaseController
 from app.models.drink import Drink as DrinkModel
-from app.schemas.drink import DrinkBase, DrinkCreate, DrinkUpdate, DrinkInDBBase, Drink
+from app.schemas.drink import DrinkBase, DrinkCreate, DrinkUpdate
 
 '''
 TODO:

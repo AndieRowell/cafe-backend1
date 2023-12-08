@@ -3,7 +3,6 @@ from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship, mapped_column, Mapped
 from sqlalchemy.sql.sqltypes import DateTime
 from sqlalchemy.sql.expression import text
-# from app.schemas import UserInDB
 
 from app.db.base_class import Base
 
@@ -24,5 +23,7 @@ class Review(Base):
     updated_timestamp: Mapped[DateTime] = Column(DateTime(timezone=True), nullable=True, server_default=text('now()'))
 
 #? foreign key relationships
+    from app.schemas.user import User
+    from app.schemas.business import Business
     user = relationship("User", back_populates="reviews")
     business = relationship("Business", back_populates="reviews")

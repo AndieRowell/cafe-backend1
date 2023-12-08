@@ -10,7 +10,6 @@ from typing import List
 # from app.models.badge import Badge
 # from app.models.user import User
 
-
 from app.db.base_class import Base
 
 #TRACKER/COLLECTION MODEL - PARENT

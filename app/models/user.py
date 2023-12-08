@@ -3,7 +3,7 @@ from sqlalchemy import Boolean, Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship, Mapped, mapped_column
 from sqlalchemy.sql.sqltypes import DateTime
 from sqlalchemy.sql.expression import text
-from app.schemas import UserInDB
+
 from typing import List
 
 from app.db.base_class import Base
@@ -30,6 +30,7 @@ class User(Base):
     collection_trackers = relationship("Collection", back_populates="user")
 
     def to_schema(self):
+        from app.schemas.user import UserInDB
         return UserInDB(
             id=self.id,
             username=self.username,

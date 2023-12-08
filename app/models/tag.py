@@ -6,8 +6,8 @@ from sqlalchemy.sql.expression import text
 # from app.schemas import UserInDB
 from typing import List
 
-from app.models.business import Business
-from app.models.user import User
+# from app.models.business import Business
+# from app.models.user import User
 
 from app.db.base_class import Base
 

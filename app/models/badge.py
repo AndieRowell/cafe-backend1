@@ -3,13 +3,11 @@ from sqlalchemy import Boolean, Column, Integer, String, Float, ForeignKey
 from sqlalchemy.orm import relationship, mapped_column, Mapped
 from sqlalchemy.sql.sqltypes import DateTime
 from sqlalchemy.sql.expression import text
-# from app.schemas import UserInDB
+#
 from typing import List
 
-# from app.models.user import UserBadge
-
 from app.db.base_class import Base
-from app.models.user import UserBadge
+#
 
 #BADGE MODEL - PARENT
 class Badge(Base):
@@ -25,5 +23,6 @@ class Badge(Base):
     updated_timestamp: Mapped[DateTime] = Column(DateTime(timezone=True), nullable=True, server_default=text('now()'))
 
 # relationship
+    from app.models.user import UserBadge
     users  = relationship("UserBadge", back_populates="badge")
     collection_trackers = relationship("CollectionTrackerBadge", back_populates="badges")

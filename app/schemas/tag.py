@@ -2,9 +2,6 @@ from datetime import datetime
 from pydantic import BaseModel
 from typing import List, Optional
 
-from app.schemas.business import Business
-from app.schemas.user import User
-
 #! from perspective of dev/admin - info needed to create/update/delete a tag
 #! from perspective of a user - info given back to read a tag
 # consider CRUD
@@ -43,5 +40,7 @@ class TagInDBBase(TagBase):
 # Tag that inherits from Tag in db base to include EVERYTHING
 #! Tag
 class Tag(TagInDBBase):
+    #from app.schemas.business import Business as Bness
+    #from app.schemas.user import Useru
     businesses: List["Business"]
     users: List["User"]
