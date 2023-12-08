@@ -30,8 +30,8 @@ def read_collection(
     limit: int = 100
 #   current_user: models.User = Depends(deps.get_current_active_superuser),
 ) -> Any:
-    collections = controllers.collection.get_multi(db, skip=skip, limit=limit)
-    return collections
+    collection = controllers.collection.get_multi(db, skip=skip, limit=limit)
+    return collection
 
 #!- post - create new collection (dev)
 @router.post("/", response_model=schemas.Collection)
@@ -43,3 +43,14 @@ def create_collection(
 ) -> Any:
     new_collection = controllers.collection.create_collection(db, obj_in=obj_in)
     return new_collection
+
+@router.post("/add_drink", response_model=schemas.Collection)
+def add_drink_to_collection(
+    *,
+    db: Session = Depends(deps.get_db),
+    drink_id: int,
+    collection_id: int,
+#    current_user: models.User = Depends(deps.get_current_active_superuser),
+) -> Any:
+    collection = controllers.collection.add_drink_to_collection(db, drink_id=drink_id, collection_id=collection_id)
+    return collection

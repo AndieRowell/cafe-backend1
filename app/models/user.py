@@ -29,10 +29,10 @@ class User(Base):
     #badges = relationship("UserBadge", back_populates="user")
     tags = relationship("UserTag", back_populates="user")
     reviews = relationship("Review", back_populates="user")
-    #collection_trackers = relationship("Collection", back_populates="user")
+    collections = relationship("Collection", back_populates="user")
 
     def to_schema(self):
-        
+
         return UserInDB(
             id=self.id,
             username=self.username,

@@ -3,6 +3,7 @@ from pydantic import BaseModel, EmailStr
 
 from app.schemas.review import Review
 # from app.schemas.tag import Tag
+from app.schemas.collection import Collection
 
 #* schema notes
 # using pydantic models - help define structure of user data
@@ -54,7 +55,7 @@ class User(UserInDBBase):
     # tags: List["Tag"]
     #badges: List["B"]
     reviews: List["Review"]
-    #collection: List["C"]
+    collections: List["Collection"]
     #! check this later
 
 

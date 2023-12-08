@@ -34,11 +34,11 @@ class Collection(Base):
     updated_timestamp: Mapped[DateTime] = Column(DateTime(timezone=True), nullable=True, server_default=text('now()'))
 
 #*PARENT relationship to child table CollectionTrackerDrink
-    #drinks = relationship("CollectionTrackerDrink", back_populates="collection_tracker")
+    drinks = relationship("CollectionTrackerDrink", back_populates="collection")
     #badges = relationship("CollectionTrackerBadge", back_populates="collection_tracker")
 
 #*PARENT relationship to PARENT
-    #user = relationship("User", back_populates="collection_trackers")
+    user = relationship("User", back_populates="collections", uselist=False)
 
 
 #! pivot/child Collection drinks
@@ -49,8 +49,8 @@ class CollectionTrackerDrink (Base):
     drink_id: Mapped[int] = mapped_column(ForeignKey("drinks.id"))
 
 # relationships to parents
-    #collection_tracker = relationship("Collection" , back_populates="drinks")
-    #drink = relationship("Drink", back_populates="collection_trackers")
+    collection = relationship("Collection" , back_populates="drinks")
+    drink = relationship("Drink", back_populates="collection")
 
 
 #! pivot/child Collection drinks

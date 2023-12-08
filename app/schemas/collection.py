@@ -8,7 +8,7 @@ from typing import List, Optional
 # consider CRUD
 
 from app.schemas.drink import Drink
-from app.schemas.user import User
+# from app.schemas.user import User
 
 '''
 TODO:
@@ -29,6 +29,7 @@ class CollectionBase(BaseModel):
     instagram_handle: Optional[str] = None
     event_promotion_time_start: Optional[datetime] = None
     event_promotion_time_stop: Optional[datetime] = None
+    event_promotion_banner: Optional[str]
     favorite: Optional[bool] = None
     created_timestamp: Optional[datetime] = None
     updated_timestamp: Optional[datetime] = None
@@ -51,6 +52,6 @@ class CollectionInDBBase(CollectionBase):
 # business that inherits from business in db base to include EVERYTHING
 #! Collection
 class Collection(CollectionInDBBase):
-    
+
     drinks: List["Drink"]
-    user: List["User"]
+    # user: "User"

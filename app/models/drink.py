@@ -29,12 +29,12 @@ class Drink(Base):
 
 #* potential relationships to fix with PARENT add when comparing drink and collection models
     #from app.models.collection_tracker import CollectionTrackerDrink
-    
-    # collection_tracker = relationship("Collection")
+
+    # collection = relationship("Collection", uselist=False)
 
 # relationships
     #PARENT relationship TO CHILD - CollectionTrackerDrink
-    #collection_trackers = relationship("CollectionTrackerDrink", back_populates="drink")
+    collection = relationship("CollectionTrackerDrink", back_populates="drink")
 
     #? foreignkey relationship to 1 business
     business = relationship("Business", back_populates="drinks", uselist=False)

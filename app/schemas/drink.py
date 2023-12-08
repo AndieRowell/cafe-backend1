@@ -2,6 +2,8 @@ from datetime import datetime
 from pydantic import BaseModel
 from typing import List, Optional
 
+#from app.schemas.business import Business
+
 #! from perspective of dev/admin - info needed to create/update/delete a drink
 #! from perspective of a user - info given back to read a drink
 # consider CRUD
@@ -46,5 +48,5 @@ class DrinkInDBBase(DrinkBase):
 # business that inherits from business in db base to include EVERYTHING
 #! DRINK
 class Drink(DrinkInDBBase):
-    #businesses: List["Business"]
+    business: "Business"
     pass

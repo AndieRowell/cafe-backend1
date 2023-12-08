@@ -43,5 +43,5 @@ def create_tag(
     tag_in: schemas.TagBase,
 #    current_user: models.User = Depends(deps.get_current_active_superuser),
 ) -> Any:
-    new_tag= controllers.drink.create_tag(db, obj_in=tag_in)
+    new_tag= controllers.tag.create_tag(db, obj_in=tag_in)
     return new_tag
