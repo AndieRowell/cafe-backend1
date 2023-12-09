@@ -10,6 +10,7 @@ from sqlalchemy.orm import Session
 from app import models, schemas, controllers
 from app.api import deps
 from app.core.config import settings
+from app.schemas.drink import Drink
 
 router = APIRouter()
 
@@ -54,3 +55,13 @@ def add_drink_to_collection(
 ) -> Any:
     collection = controllers.collection.add_drink_to_collection(db, drink_id=drink_id, collection_id=collection_id)
     return collection
+
+@router.post("/get_collection_drinks", response_model=List[schemas.Drink])
+def get_collection_drinks(
+    *,
+    db: Session = Depends(deps.get_db),
+    collection_id: int,
+#    current_user: models.User = Depends(deps.get_current_active_superuser),
+) -> Any:
+    drinks = controllers.collection.get_collection_drinks(db, collection_id=collection_id)
+    return drinks

@@ -34,7 +34,7 @@ class Drink(Base):
 
 # relationships
     #PARENT relationship TO CHILD - CollectionTrackerDrink
-    collection = relationship("CollectionTrackerDrink", back_populates="drink")
+    collection = relationship("CollectionTrackerDrink", back_populates="drink", uselist=False)
 
     #? foreignkey relationship to 1 business
-    business = relationship("Business", back_populates="drinks", uselist=False)
+    #business = relationship("Business")

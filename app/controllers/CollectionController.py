@@ -1,4 +1,4 @@
-from typing import Any, Dict, Optional, Union
+from typing import Any, Dict, List, Optional, Union
 from sqlalchemy.orm import Session
 from app.controllers.BaseController import BaseController
 from app.models.collection import Collection as CollectionModel, CollectionTrackerDrink
@@ -49,5 +49,10 @@ class CollectionController(BaseController[CollectionModel, CollectionCreate, Col
         db.refresh(db_obj)
         c = db.query(CollectionModel).filter(CollectionModel.id == collection_id).first()
         return c
+
+    def get_collection_drinks(self, db: Session, *, collection_id: int) -> List[Drink]:
+        return db.query(CollectionTrackerDrink, Drink)\
+            .filter(CollectionTrackerDrink.collection_tracker_id == collection_id)\
+            .join(CollectionTrackerDrink.drink).all()
 
 collection = CollectionController(CollectionModel)

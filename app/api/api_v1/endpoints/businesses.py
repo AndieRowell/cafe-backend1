@@ -36,7 +36,7 @@ def read_businesses(
     limit: int = 100
 #   current_user: models.User = Depends(deps.get_current_active_superuser),
 ) -> Any:
-    businesses = controllers.business.get_multi(db, skip=skip, limit=limit)
+    businesses = controllers.business.get_multi(db, skip=0, limit=100)
     return businesses
 
 #!- post - create new business (dev)

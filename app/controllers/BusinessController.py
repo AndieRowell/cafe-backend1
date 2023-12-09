@@ -1,7 +1,8 @@
-from typing import Any, Dict, Optional, Union
-from sqlalchemy.orm import Session
+from typing import Any, Dict, List, Optional, Union
+from sqlalchemy.orm import Session, joinedload
 from app.controllers.BaseController import BaseController
 from app.models.business import Business as BusinessModel, BusinessTag as BusinessTagModel
+from app.models.drink import Drink
 from app.schemas.business import BusinessBase, BusinessCreate, BusinessUpdate, BusinessInDBBase, Business as BusinessSchema
 
 '''
@@ -17,6 +18,11 @@ TODO:
 class BusinessController(BaseController[BusinessModel, BusinessCreate, BusinessUpdate]):
     def get_business_by_id(self, db: Session, *, id: int):
         return db.query(BusinessModel).filter(BusinessModel.id == id).first()
+
+    def get_businesses(self, db: Session) -> List[BusinessModel]:
+        businesses = db.query(BusinessModel).all()
+        return businesses
+
 
 # example code from docs -----
     # def get_business_by_id(db: Session, business_id: int):

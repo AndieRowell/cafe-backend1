@@ -48,5 +48,5 @@ class DrinkInDBBase(DrinkBase):
 # business that inherits from business in db base to include EVERYTHING
 #! DRINK
 class Drink(DrinkInDBBase):
-    business: "Business"
+    #business: "Business"
     pass

@@ -48,6 +48,6 @@ class BusinessInDBBase(BusinessBase):
 class Business(BusinessInDBBase):
 
     #from app.schemas.review import Review
-    drinks: List["Drink"]
+    drinks: List["Drink"] = []
     #reviews: List["Review"]
-    tags: List["Tag"]
+    tags: List["Tag"] = []

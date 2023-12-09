@@ -32,7 +32,7 @@ class Business(Base):
     #BusinessTag refers to child class
     #businesses refers to businesses relationship under child
     reviews = relationship("Review", back_populates="business")
-    drinks = relationship("Drink", back_populates="business")
+    #drinks = relationship("Drink")
 
 #! pivot/child
 class BusinessTag (Base):

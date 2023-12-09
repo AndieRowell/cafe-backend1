@@ -52,6 +52,6 @@ class CollectionInDBBase(CollectionBase):
 # business that inherits from business in db base to include EVERYTHING
 #! Collection
 class Collection(CollectionInDBBase):
-
-    drinks: List["Drink"]
-    # user: "User"
+    pass
+    #drinks: List["Drink"] = []
+    #user: "User"
